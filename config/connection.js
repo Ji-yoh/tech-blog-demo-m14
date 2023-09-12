@@ -12,10 +12,10 @@ if (process.env.CLEARDB_DATABASE_URL) {
         {
             host: "localhost",
             dialect: "mysql",
-            // should comment out port for Heroku deployment
             port: 3306
         }
     )
 };
+// should comment out port number when deployed to heroku
 
 module.exports = sequelize;

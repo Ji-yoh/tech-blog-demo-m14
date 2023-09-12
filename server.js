@@ -1,10 +1,12 @@
 // install packages: express, mysql, sequelize, express-handlebars, nodemon, dotenv
 const express = require("express");
 const { engine } = require("express-handlebars");
-const sequelize = require("./config/connection");
-const routes = require("./controllers/blogRoutes");
+
+const routes = require("./controllers");
 const path = require("path");
 const session = require("express-session");
+
+const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 require("dotenv").config();
@@ -40,6 +42,6 @@ app.use(express.static("public"));
 
 app.use(routes);
 
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on port ${PORT}!`));
 })
