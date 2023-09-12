@@ -13,9 +13,13 @@ const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-app.engine("handlebars", engine());
+app.engine("handlebars", engine( {
+    defaultLayout: "",
+    extname: ".handlebars",
+    layoutsDir: path.join(__dirname, "views/layouts"),
+}));
 app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "views"));
+// app.set("views", path.join(__dirname, "views"));
 
 const sess = {
     secret: process.env.SESSION_SECRET,
